@@ -20,31 +20,22 @@ COOLDOWN_SECONDS = 60
 # --- /kqxs ---
 @bot.message_handler(commands=['kqxs'])
 def sxmb(message):
+    user = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a>"
     try:
-        url = "https://kqxs.p.rapidapi.com/"
-        params = {
-            "id": "mien-bac",
-            "date": time.strftime("%Y-%m-%d")  # lấy ngày hôm nay
-        }
-        headers = {
-            "x-rapidapi-host": "kqxs.p.rapidapi.com",
-            "x-rapidapi-key": "9e700da0d4mshdcefe58f553d208p1a4261jsnab01ecd09469"
-        }
+        bot.delete_message(message.chat.id, message.message_id)
+    except:
+        pass
 
-        response = requests.get(url, headers=headers, params=params, timeout=10)
+    api_url = 'https://nguyenmanh.name.vn/api/xsmb?apikey=OUEaxPOl'
+    try:
+        response = requests.get(api_url)
         data = response.json()
-
-        if 'ketqua' in data:
-            result = data['ketqua']
-            msg = f"<b>KẾT QUẢ XỔ SỐ MIỀN BẮC ({params['date']})</b>\n\n"
-            for giai, so in result.items():
-                msg += f"<b>{giai.upper()}</b>: {' - '.join(so)}\n"
-            bot.send_message(message.chat.id, msg, parse_mode='HTML')
+        if data.get('status') == 200:
+            bot.send_message(message.chat.id, f"{user}, kết quả hôm nay:\n<b>{data['result']}</b>", parse_mode='HTML')
         else:
-            bot.send_message(message.chat.id, "❌ API không trả về kết quả hợp lệ.")
+            bot.send_message(message.chat.id, f"{user}, lỗi khi lấy kết quả xổ số.", parse_mode='HTML')
     except Exception as e:
-        bot.send_message(message.chat.id, f"❌ Lỗi API: {e}")
-
+        bot.send_message(message.chat.id, f'{user}, đã xảy ra lỗi: {e}', parse_mode='HTML')
 
 # --- /quaythu ---
 @bot.message_handler(commands=['quaythu'])
