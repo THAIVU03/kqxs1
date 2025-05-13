@@ -20,31 +20,26 @@ COOLDOWN_SECONDS = 60
 # --- /kqxs ---
 @bot.message_handler(commands=['kqxs'])
 def sxmb(message):
-    user = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a>"
     try:
         bot.delete_message(message.chat.id, message.message_id)
     except:
         pass
 
-    api_url = 'https://nguyenmanh.name.vn/api/xsmb?apikey=OUEaxPOl'
+    api_url = 'https://api-xsmb.cyclic.app/api/v1/mienbac'
 
     try:
         response = requests.get(api_url, timeout=5)
-
-        if response.status_code == 200 and response.content:
-            try:
-                data = response.json()
-                if data.get('status') == 200:
-                    bot.send_message(message.chat.id, f"{user}, kết quả hôm nay:\n<b>{data['result']}</b>", parse_mode='HTML')
-                else:
-                    bot.send_message(message.chat.id, f"{user}, ❌ API trả về lỗi: {data}", parse_mode='HTML')
-            except ValueError:
-                bot.send_message(message.chat.id, f"{user}, ❌ API không trả về JSON hợp lệ.", parse_mode='HTML')
+        if response.status_code == 200:
+            data = response.json()
+            msg = f"<b>KẾT QUẢ XỔ SỐ MIỀN BẮC ({data['ngay']})</b>\n\n"
+            for giai, kq in data['kq'].items():
+                msg += f"<b>{giai.upper()}:</b> {', '.join(kq)}\n"
+            bot.send_message(message.chat.id, msg, parse_mode='HTML')
         else:
-            bot.send_message(message.chat.id, f"{user}, ❌ API không phản hồi hoặc bị lỗi ({response.status_code}).", parse_mode='HTML')
+            bot.send_message(message.chat.id, "❌ API lỗi hoặc không phản hồi.")
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Lỗi: {e}")
 
-    except requests.RequestException as e:
-        bot.send_message(message.chat.id, f"{user}, ❌ Lỗi kết nối API: {e}", parse_mode='HTML')
 
 # --- /quaythu ---
 @bot.message_handler(commands=['quaythu'])
