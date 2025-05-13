@@ -20,29 +20,22 @@ COOLDOWN_SECONDS = 60
 # --- /kqxs ---
 @bot.message_handler(commands=['kqxs'])
 def sxmb(message):
+    user = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a>"
     try:
         bot.delete_message(message.chat.id, message.message_id)
-    except Exception as e:
-        print(f"Không thể xoá lệnh: {e}")
+    except:
+        pass
 
     api_url = 'https://nguyenmanh.name.vn/api/xsmb?apikey=OUEaxPOl'
     try:
-        response = requests.get(api_url, timeout=5)
-
-        # Kiểm tra phản hồi hợp lệ trước khi xử lý JSON
-        if response.status_code == 200 and response.content:
-            try:
-                data = response.json()
-                if data.get('status') == 200:
-                    bot.send_message(message.chat.id, f"<b>{data['result']}</b>", parse_mode='HTML')
-                else:
-                    bot.send_message(message.chat.id, "❌ API trả về lỗi: " + str(data))
-            except ValueError:
-                bot.send_message(message.chat.id, "❌ API không trả về JSON hợp lệ.")
+        response = requests.get(api_url)
+        data = response.json()
+        if data.get('status') == 200:
+            bot.send_message(message.chat.id, f"{user}, kết quả hôm nay:\n<b>{data['result']}</b>", parse_mode='HTML')
         else:
-            bot.send_message(message.chat.id, "❌ API không phản hồi hoặc bị lỗi.")
-    except requests.RequestException as e:
-        bot.send_message(message.chat.id, f'❌ Lỗi kết nối API: {e}')
+            bot.send_message(message.chat.id, f"{user}, lỗi khi lấy kết quả xổ số.", parse_mode='HTML')
+    except Exception as e:
+        bot.send_message(message.chat.id, f'{user}, đã xảy ra lỗi: {e}', parse_mode='HTML')
 
 # --- /quaythu ---
 @bot.message_handler(commands=['quaythu'])
