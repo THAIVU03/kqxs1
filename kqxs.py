@@ -20,25 +20,19 @@ COOLDOWN_SECONDS = 60
 # --- /kqxs ---
 @bot.message_handler(commands=['kqxs'])
 def sxmb(message):
-    try:
-        bot.delete_message(message.chat.id, message.message_id)
-    except:
-        pass
-
-    api_url = 'https://api-xsmb.cyclic.app/api/v1/mienbac'
-
+    api_url = 'https://nguyenmanh.name.vn/api/xsmb?apikey=OUEaxPOl'
     try:
         response = requests.get(api_url, timeout=5)
-        if response.status_code == 200:
-            data = response.json()
-            msg = f"<b>KẾT QUẢ XỔ SỐ MIỀN BẮC ({data['ngay']})</b>\n\n"
-            for giai, kq in data['kq'].items():
-                msg += f"<b>{giai.upper()}:</b> {', '.join(kq)}\n"
-            bot.send_message(message.chat.id, msg, parse_mode='HTML')
+        data = response.json()
+
+        if data['status'] == 200:
+            bot.reply_to(message, f"<b>{data['result']}</b>", parse_mode='HTML')
+            bot.delete_message(message.chat.id, message.message_id)
         else:
-            bot.send_message(message.chat.id, "❌ API lỗi hoặc không phản hồi.")
+            bot.reply_to(message, '❌ Lỗi khi lấy kết quả xổ số.')
     except Exception as e:
-        bot.send_message(message.chat.id, f"❌ Lỗi: {e}")
+        bot.reply_to(message, f'❌ Lỗi: {e}')
+
 
 
 # --- /quaythu ---
