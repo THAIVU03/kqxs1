@@ -51,14 +51,14 @@ def quaythu(message):
 
     result = f"""{user}, đây là kết quả quay thử nghiêm cấm cờ bạc dưới mọi hình thức đây chỉ là thử nghiệm:
 <b>KẾT QUẢ QUAY THỬ XỔ SỐ MIỀN BẮC</b>
-Giải Đặc Biệt: {rand_number(5)}
-Giải Nhất: {rand_number(5)}
-Giải Nhì : {rand_number(5)} - {rand_number(5)}
+Giải Đặc Biệt:                                           {rand_number(5)}
+Giải Nhất:                                               {rand_number(5)}
+Giải Nhì :                                       {rand_number(5)} - {rand_number(5)}
 Giải Ba  : {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)}
 Giải bốn : {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)}
 Giải năm : {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)}
-Giải sáu : {rand_number(3)} - {rand_number(3)} - {rand_number(3)}
-Giải bảy : {rand_number(2)} - {rand_number(2)} - {rand_number(2)} - {rand_number(2)}"""
+Giải sáu :                                {rand_number(3)} - {rand_number(3)} - {rand_number(3)}
+Giải bảy :                    {rand_number(2)} - {rand_number(2)} - {rand_number(2)} - {rand_number(2)}"""
 
     bot.send_message(message.chat.id, result, parse_mode='HTML')
 
@@ -119,7 +119,7 @@ def handle_gaitt(message):
         flag = get_flag(region)
 
         caption = f"""
-{user}, đây là video bạn cần 🎬
+{user}, video đây các con nợ - Ngũ Long Bang 🎬
 <b>{data.get('title', 'Không có tiêu đề')}</b>
 ━━━━━━━━━━━━━━━━━━
 👤 <b>Tác giả:</b> {author.get('nickname', 'N/A')}  
