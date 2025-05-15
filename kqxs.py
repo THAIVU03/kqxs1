@@ -51,14 +51,14 @@ def quaythu(message):
 
     result = f"""{user}, đây là kết quả quay thử nghiêm cấm cờ bạc dưới mọi hình thức đây chỉ là thử nghiệm:
 <b>KẾT QUẢ QUAY THỬ XỔ SỐ MIỀN BẮC</b>
-ĐB: {rand_number(5)}
-1: {rand_number(5)}
-2: {rand_number(5)} - {rand_number(5)}
-3: {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)}
-4: {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)}
-5: {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)}
-6: {rand_number(3)} - {rand_number(3)} - {rand_number(3)}
-7: {rand_number(2)} - {rand_number(2)} - {rand_number(2)} - {rand_number(2)}"""
+Giải Đặc Biệt: {rand_number(5)}
+Giải Nhất: {rand_number(5)}
+Giải Nhì : {rand_number(5)} - {rand_number(5)}
+Giải Ba  : {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)}
+Giải bốn : {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)}
+Giải năm : {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)} - {rand_number(4)}
+Giải sáu : {rand_number(3)} - {rand_number(3)} - {rand_number(3)}
+Giải bảy : {rand_number(2)} - {rand_number(2)} - {rand_number(2)} - {rand_number(2)}"""
 
     bot.send_message(message.chat.id, result, parse_mode='HTML')
 
