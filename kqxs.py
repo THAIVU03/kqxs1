@@ -49,7 +49,7 @@ def quaythu(message):
     def rand_number(length):
         return ''.join(random.choices('0123456789', k=length))
 
-    result = f"""{user}, đây là kết quả quay thử:
+    result = f"""{user}, đây là kết quả quay thử nghiêm cấm cờ bạc dưới mọi hình thức đây chỉ là thử nghiệm:
 <b>KẾT QUẢ QUAY THỬ XỔ SỐ MIỀN BẮC</b>
 ĐB: {rand_number(5)}
 1: {rand_number(5)}
