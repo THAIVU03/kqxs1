@@ -51,7 +51,7 @@ def quaythu(message):
 
     result = f"""{user}, đây là kết quả quay thử nghiêm cấm cờ bạc dưới mọi hình thức đây chỉ là thử nghiệm:
 <b>KẾT QUẢ QUAY THỬ XỔ SỐ MIỀN BẮC</b>
-Giải Đặc Biệt:                                           {rand_number(5)}
+Giải Đặc Biệt:                      ---                 {rand_number(5)}                    ---
 Giải Nhất:                                               {rand_number(5)}
 Giải Nhì :                                       {rand_number(5)} - {rand_number(5)}
 Giải Ba  : {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)} - {rand_number(5)}
